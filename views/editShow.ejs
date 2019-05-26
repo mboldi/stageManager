@@ -1,0 +1,95 @@
+<% include header %>
+<% include navbar %>
+
+
+<div class="container-float">
+    <div class="row">
+        <div class="col-0 col-xl-3">
+            &nbsp;
+        </div>
+
+        <div class="col-12 col-xl-6 mx-3">
+            <h1>Produkció hozzáadása</h1>
+
+            <form class="my-4 mx-auto" enctype="multipart/form-data" method="post">
+                <div class="form-group">
+                    <label for="name">Név:</label>
+                    <input type="text" name="name" class="form-control mr-sm-2" id="name" autocomplete="off" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="performer">Előadó(k):</label>
+                    <input type="text" name="performer" class="form-control mr-sm-2" id="performer"
+                           autocomplete="off" required>
+                </div>
+
+
+                <label for="needs">Szükségletek:</label>
+                <div id="needs" class="form-group pl-3">
+
+                    <div class="form-group">
+                        <label for="mic">Mikrofon</label>
+                        <input type="text" name="mic" class="form-control mr-sm-2" id="mic"
+                               autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="music">Zene</label>
+                        <input type="text" name="music" class="form-control mr-sm-2" id="music"
+                               autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="light">Fény</label>
+                        <input type="text" name="light" class="form-control mr-sm-2" id="light"
+                               autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="curtains">Függöny</label><br>
+                        <div class="form-check form-check-inline" id="curtains">
+                            <input class="form-check-input" type="radio" name="curtain" id="curtain1" value="open"
+                                   checked>
+                            <label class="form-check-label" for="curtain1">Szét</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="curtain" id="curtain2" value="closed">
+                            <label class="form-check-label" for="curtain2">Össze</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="other">Egyéb</label>
+                        <input type="text" name="other" class="form-control mr-sm-2" id="other"
+                               autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="afterThis">Mi után következzen?</label>
+                    <select class="form-control" id="afterThis" name="afterThis">
+                        <% data.shows.forEach(function(show) { %>
+                            <option><%= show.performer %> - <%= show.name %></option>
+                        <% }); %>
+                        <!--
+
+                        <option selected="selected">2.a - Palotás</option>-->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="picture">Kép</label>
+                    <input type="file" name="picture" class="form-control mr-sm-2" id="picture"
+                           autocomplete="off">
+                </div>
+
+                <div class="form-inline">
+                    <button class="btn btn-success mr-sm-2" type="submit">Produkció felvétele</button>
+                    <a class="btn btn-outline-danger my-2" href="/plan">Mégsem</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<% include footer %>

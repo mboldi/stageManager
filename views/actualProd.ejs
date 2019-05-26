@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="hu" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>StageManager</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <script type="text/javascript">
+        const ws = new WebSocket("ws://192.168.1.72:5000");
+
+        ws.onopen = function () {
+            //ws.send("Message to send");
+        };
+
+        ws.onmessage = function (evt) {
+            const msg = evt.data;
+
+            if (msg === 'refresh') {/*
+                document.getElementById("nextButt").hidden = false;
+                document.getElementById("prevButt").hidden = true;*/
+                //alert(msg);
+                location.reload();
+            }
+        };
+
+        ws.onclose = function () {
+            //alert("Connection is closed...");
+        };
+
+        function nextItem() {
+            ws.send('next');
+        }
+
+        function previousItem() {
+            ws.send('previous');
+        }
+    </script>
+
+</head>
+
+<body>
+
+<% include navbar %>
+<!--
+<div class="progress">
+    <div class="progress-bar bg-info" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+</div>
+-->
+
+<div class="container-float mx-4 mt-4">
+    <div class="row mb-3">
+        <div class="col-6">
+            <a class="btn btn-outline-dark disabled" href="javascript:previousItem()" style="font-size: 2em">Vissza</a>
+        </div>
+        <div class="col-6">
+            <a class="btn btn-outline-dark float-right" href="javascript:nextItem()" style="font-size: 2em">Előre</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <div class="card text-white bg-success mb-5 shadow">
+                <div class="card-header pb-0">
+                    <h3 class="card-title">Most zajlik</h3>
+                    <p class="card-title disabled">1 - Megnyitó</p>
+                </div>
+                <div class="card-body p-1">
+                    <ul class="list-group list-group-flush bg-success">
+                        <li class="list-group-item bg-success p-0 pt-2 pl-3">Előadó: Igazgató bácsi</li>
+                        <li class="list-group-item bg-success p-0 pt-3 pl-3">Szükségletek:</li>
+                        <ul class="list-group-item list-group bg-success p-0 pl-3">
+                            <li class="list-group-item bg-success pb-0 pt-2">Mikrofon: 1 db álló középen</li>
+                            <li class="list-group-item bg-success pb-0 pt-2">Zene: nincs</li>
+                            <li class="list-group-item bg-success pb-0 pt-2">Fény: sok fehér</li>
+                            <li class="list-group-item bg-success pb-0 pt-2">Függöny: össze</li>
+                            <li class="list-group-item bg-success pb-0 pt-2">Egyéb: szerencsére nincs</li>
+                        </ul>
+                    </ul>
+                </div>
+                <a href="/img/esc19.jpg" target="_blank"><img src="/img/esc19.jpg" class="card-img-top"></a>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6 ">
+            <div class="card text-white bg-warning mb-5 shadow">
+                <div class="card-header pb-0">
+                    <h3 class="card-title">Következő</h3>
+                    <p class="card-title disabled">2 - Palotás néptánc</p>
+                </div>
+                <div class="card-body p-1">
+                    <ul class="list-group list-group-flush bg-warning">
+                        <li class="list-group-item bg-warning p-0 pt-2 pl-3">Előadó: 2.a</li>
+                        <li class="list-group-item bg-warning p-0 pt-3 pl-3">Szükségletek:</li>
+                        <ul class="list-group-item list-group bg-warning p-0 pl-3">
+                            <li class="list-group-item bg-warning pb-0 pt-2">Mikrofon: nincs</li>
+                            <li class="list-group-item bg-warning pb-0 pt-2">Zene: palotas_2.mp3</li>
+                            <li class="list-group-item bg-warning pb-0 pt-2">Fény: sok fehér</li>
+                            <li class="list-group-item bg-warning pb-0 pt-2">Függöny: szét</li>
+                            <li class="list-group-item bg-warning pb-0 pt-2">Egyéb: szerencsére nincs</li>
+                        </ul>
+                    </ul>
+                </div>
+                <a href="/img/esc19.jpg" target="_blank"><img src="/img/esc19.jpg" class="card-img-top"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include footer %>

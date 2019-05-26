@@ -1,0 +1,61 @@
+<% include header %>
+<% include navbar %>
+
+<div class="container-float">
+    <div class="row">
+        <div class="col-0 col-xl-2">
+            &nbsp;
+        </div>
+
+        <div class="col-12 col-xl-8 mx-3">
+            <h1>Műsorterv</h1>
+
+            <a href="/prod/new" class="btn btn-outline-success my-4">Új produkció</a>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Előadó</th>
+                    <th scope="col">Produkció</th>
+                    <th scope="col">Szükségletek</th>
+                    <th scope="col"><i class="fas fa-arrow-up"></i></th>
+                    <th scope="col"><i class="fas fa-arrow-down"></i></th>
+                    <th scope="col">Szerkesztés</th>
+                    <th scope="col"><i class="fas fa-trash"></i></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Igazgató bácsi</td>
+                    <td>Megnyitó</td>
+                    <td>Mikrofon</td>
+                    <td><a href="/prod/:id/up" class="btn btn-outline-secondary disabled"><i
+                                    class="fas fa-arrow-up"></i></a>
+                    </td>
+                    <td><a href="/prod/:id/down" class="btn btn-outline-secondary"><i class="fas fa-arrow-down"></i></a>
+                    </td>
+                    <td><a href="/prod/:id/edit" class="btn btn-warning">Szerkesztés</a></td>
+                    <td><a href="/prod/:id/delete" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2.a</td>
+                    <td>Palotás néptánc</td>
+                    <td>Zene</td>
+                    <td><a href="/prod/:id/up" class="btn btn-outline-secondary"><i class="fas fa-arrow-up"></i></a>
+                    </td>
+                    <td><a href="/prod/:id/down" class="btn btn-outline-secondary disabled"><i
+                                    class="fas fa-arrow-down"></i></a>
+                    </td>
+                    <td><a href="/prod/:id/edit" class="btn btn-warning">Szerkesztés</a></td>
+                    <td><a href="/prod/:id/delete" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<% include footer %>
