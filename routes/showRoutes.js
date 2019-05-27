@@ -7,6 +7,7 @@ const deleteShowMW = require('../middleware/show/deleteShow');
 const getShowMW = require('../middleware/show/getShow');
 const getShowListMW = require('../middleware/show/getShowList');
 const moveShowMW = require('../middleware/show/moveShow');
+const fixNumberingMW = require('../middleware/show/fixNumbering');
 
 const showModel = require('../models/show');
 
@@ -26,6 +27,13 @@ module.exports = function (app) {
         authMW(objectRepository),
         getShowListMW(objectRepository),
         editShowMW(objectRepository),
+        fixNumberingMW(objectRepository),
+        function(req, res, next) {
+            if(res.local.redir)
+                res.redirect('/plan');
+            else
+                next();
+        },
         renderMW(objectRepository, 'editShow')
     );
 
@@ -33,6 +41,7 @@ module.exports = function (app) {
         authMW(objectRepository),
         getShowListMW(objectRepository),
         deleteShowMW(objectRepository),
+        fixNumberingMW(objectRepository),
         function (req, res) {
             return res.redirect('/plan');
         }
@@ -43,11 +52,20 @@ module.exports = function (app) {
         getShowMW(objectRepository),
         getShowListMW(objectRepository),
         editShowMW(objectRepository),
+        fixNumberingMW(objectRepository),
+        function(req, res, next) {
+            if(res.local.redir)
+                res.redirect('/plan');
+            else
+                next();
+        },
         renderMW(objectRepository, 'editShow')
     );
 
     app.get('/prod/:id/up',
         authMW(objectRepository),
+        getShowMW(objectRepository),
+        getShowListMW(objectRepository),
         moveShowMW(objectRepository, 'up'),
         function (req, res) {
             return res.redirect('/plan');
@@ -56,6 +74,8 @@ module.exports = function (app) {
 
     app.get('/prod/:id/down',
         authMW(objectRepository),
+        getShowMW(objectRepository),
+        getShowListMW(objectRepository),
         moveShowMW(objectRepository, 'down'),
         function (req, res) {
             return res.redirect('/plan');

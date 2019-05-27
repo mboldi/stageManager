@@ -86,12 +86,14 @@ module.exports = function (objectrepository) {
 
                                 res.local.shows[i].save(function (err) {
                                     if (i === res.local.shows.length - 1) {
-                                        return res.redirect('/plan');
+                                        res.local.redir = true;
+                                        return next();
                                     }
                                 });
                             }
                         } else {
-                            return res.redirect('/plan');
+                            res.local.redir = true;
+                            return next();
                         }
                     });
                 } else {
@@ -104,10 +106,12 @@ module.exports = function (objectrepository) {
                     }
 
                     show.save(function (err) {
-                        return res.redirect('/plan');
+                        res.local.redir = true;
+                        return next();
                     });
                 }
             } else {
+                res.local.redir = false;
                 return next();
             }
         });

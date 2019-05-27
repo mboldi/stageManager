@@ -33,11 +33,28 @@
                         <td><%= i++ %></td>
                         <td><%= show.performer %></td>
                         <td><%= show.name %></td>
-                        <td><%= show.needed %></td>
-                        <td><a href="/prod/<%= show._id %>/up" class="btn btn-outline-secondary"><i
+                        <td>
+                            <% if(typeof show.needed.mic !== "undefined") { %>Mikrofon: <%= show.needed.mic %>
+                            <% } %>
+                            <% if(typeof show.needed.music !== "undefined") { %>, Zene: <%= show.needed.music %>
+                            <% } %>
+                            <% if(typeof show.needed.light !== "undefined") { %>, Fény: <%= show.needed.light %>
+                            <% } %>
+                            , Függöny:
+                            <% if(show.needed.mic === "open") { %> szét
+                            <% } else { %> össze
+                            <% } %>
+                            <% if(typeof show.needed.other !== "undefined") { %>, Egyéb: <%= show.needed.other %>
+                            <% } %>
+                        </td>
+                        <td><a href="/prod/<%= show._id %>/up"
+                               class="btn btn-outline-secondary <% if(show.num === 1) { %> disabled
+                                    <% } %>"><i
                                         class="fas fa-arrow-up"></i></a>
                         </td>
-                        <td><a href="/prod/<%= show._id %>/down" class="btn btn-outline-secondary"><i
+                        <td><a href="/prod/<%= show._id %>/down"
+                               class="btn btn-outline-secondary <% if(show.num === data.shows.length) { %> disabled
+                                    <% } %>"><i
                                         class="fas fa-arrow-down"></i></a>
                         </td>
                         <td><a href="/prod/<%= show._id %>/edit" class="btn btn-warning">Szerkesztés</a></td>
