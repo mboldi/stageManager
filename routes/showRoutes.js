@@ -31,6 +31,7 @@ module.exports = function (app) {
 
     app.get('/prod/:id/delete',
         authMW(objectRepository),
+        getShowListMW(objectRepository),
         deleteShowMW(objectRepository),
         function (req, res) {
             return res.redirect('/plan');

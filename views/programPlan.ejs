@@ -26,32 +26,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Igazgató bácsi</td>
-                    <td>Megnyitó</td>
-                    <td>Mikrofon</td>
-                    <td><a href="/prod/:id/up" class="btn btn-outline-secondary disabled"><i
-                                    class="fas fa-arrow-up"></i></a>
-                    </td>
-                    <td><a href="/prod/:id/down" class="btn btn-outline-secondary"><i class="fas fa-arrow-down"></i></a>
-                    </td>
-                    <td><a href="/prod/:id/edit" class="btn btn-warning">Szerkesztés</a></td>
-                    <td><a href="/prod/:id/delete" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2.a</td>
-                    <td>Palotás néptánc</td>
-                    <td>Zene</td>
-                    <td><a href="/prod/:id/up" class="btn btn-outline-secondary"><i class="fas fa-arrow-up"></i></a>
-                    </td>
-                    <td><a href="/prod/:id/down" class="btn btn-outline-secondary disabled"><i
-                                    class="fas fa-arrow-down"></i></a>
-                    </td>
-                    <td><a href="/prod/:id/edit" class="btn btn-warning">Szerkesztés</a></td>
-                    <td><a href="/prod/:id/delete" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
-                </tr>
+                <%
+                let i = 1;
+                data.shows.forEach( function (show) { %>
+                    <tr>
+                        <td><%= i++ %></td>
+                        <td><%= show.performer %></td>
+                        <td><%= show.name %></td>
+                        <td><%= show.needed %></td>
+                        <td><a href="/prod/<%= show._id %>/up" class="btn btn-outline-secondary"><i
+                                        class="fas fa-arrow-up"></i></a>
+                        </td>
+                        <td><a href="/prod/<%= show._id %>/down" class="btn btn-outline-secondary"><i
+                                        class="fas fa-arrow-down"></i></a>
+                        </td>
+                        <td><a href="/prod/<%= show._id %>/edit" class="btn btn-warning">Szerkesztés</a></td>
+                        <td><a href="/prod/<%= show._id %>/delete" class="btn btn-danger"><i
+                                        class="fas fa-trash"></i></a></td>
+                    </tr>
+                <% }); %>
                 </tbody>
             </table>
         </div>

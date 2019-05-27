@@ -13,6 +13,14 @@ module.exports = function (objectrepository) {
     return function (req, res, next) {
         const fileName = 'pic' + '-' + Date.now() + '.jpg';
 
+        if (typeof res.local === "undefined")
+            res.local = {};
+
+        if (typeof req.params.id === "undefined")
+            res.local.title = "hozzáadása";
+        else
+            res.local.title = "szerkesztése";
+
         const storage = multer.diskStorage({
             destination: function (req, file, cb) {
                 cb(null, 'static/img');
@@ -63,7 +71,7 @@ module.exports = function (objectrepository) {
                         return currShow.name === req.body.afterThis.split(' - ')[1];
                     });
 
-                    show.num = after.num;
+                    show.num = after.num + 1;
 
                     if (typeof req.file !== "undefined") {
                         console.log('got file');
@@ -72,14 +80,18 @@ module.exports = function (objectrepository) {
                     }
 
                     show.save(function (err) {
-                        for (let i = after.num - 1; i < res.local.shows.length; i++) {
-                            res.local.shows[i].num++;
+                        if (after.num < res.local.shows.length) {
+                            for (let i = after.num; i < res.local.shows.length; i++) {
+                                res.local.shows[i].num++;
 
-                            res.local.shows[i].save(function (err) {
-                                if (i === res.local.shows.length - 1) {
-                                    return res.redirect('/plan');
-                                }
-                            });
+                                res.local.shows[i].save(function (err) {
+                                    if (i === res.local.shows.length - 1) {
+                                        return res.redirect('/plan');
+                                    }
+                                });
+                            }
+                        } else {
+                            return res.redirect('/plan');
                         }
                     });
                 } else {

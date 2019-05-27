@@ -14,7 +14,7 @@ module.exports = function (objectrepository) {
 
         showModel.find({},
             function (err, result) {
-                res.local.shows = result.sort((a, b) => (a.num < b.num) ? 1 : -1);
+                res.local.shows = result.sort((a, b) => (a.num > b.num) ? 1 : -1);
 
                 return next();
             });

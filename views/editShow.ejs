@@ -9,17 +9,22 @@
         </div>
 
         <div class="col-12 col-xl-6 mx-3">
-            <h1>Produkció hozzáadása</h1>
+            <h1>Produkció <%= data.title %></h1>
 
             <form class="my-4 mx-auto" enctype="multipart/form-data" method="post">
                 <div class="form-group">
                     <label for="name">Név:</label>
-                    <input type="text" name="name" class="form-control mr-sm-2" id="name" autocomplete="off" required>
+                    <input type="text" name="name" class="form-control mr-sm-2" id="name" autocomplete="off"
+                    <% if(typeof data.show !== "undefined" ) { %> value="<%= data.show.name %>"
+                            <% } %>
+                           required>
                 </div>
 
                 <div class="form-group">
                     <label for="performer">Előadó(k):</label>
                     <input type="text" name="performer" class="form-control mr-sm-2" id="performer"
+                    <% if(typeof data.show !== "undefined" ) { %> value="<%= data.show.performer %>"
+                            <% } %>
                            autocomplete="off" required>
                 </div>
 
@@ -30,18 +35,24 @@
                     <div class="form-group">
                         <label for="mic">Mikrofon</label>
                         <input type="text" name="mic" class="form-control mr-sm-2" id="mic"
+                        <% if(typeof data.show !== "undefined" ) { %> value="<%= data.show.needed.mic %>"
+                                <% } %>
                                autocomplete="off">
                     </div>
 
                     <div class="form-group">
                         <label for="music">Zene</label>
                         <input type="text" name="music" class="form-control mr-sm-2" id="music"
+                        <% if(typeof data.show !== "undefined" ) { %> value="<%= data.show.needed.music %>"
+                                <% } %>
                                autocomplete="off">
                     </div>
 
                     <div class="form-group">
                         <label for="light">Fény</label>
                         <input type="text" name="light" class="form-control mr-sm-2" id="light"
+                        <% if(typeof data.show !== "undefined" ) { %> value="<%= data.show.needed.light %>"
+                                <% } %>
                                autocomplete="off">
                     </div>
 
@@ -49,11 +60,20 @@
                         <label for="curtains">Függöny</label><br>
                         <div class="form-check form-check-inline" id="curtains">
                             <input class="form-check-input" type="radio" name="curtain" id="curtain1" value="open"
-                                   checked>
+                            <% if(typeof data.show !== "undefined" ) { if(data.show.needed.curtain === 'open') { %>
+                                   checked
+                            <% }} else { %>
+                                   checked
+                                    <% } %>
+                            >
                             <label class="form-check-label" for="curtain1">Szét</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="curtain" id="curtain2" value="closed">
+                            <input class="form-check-input" type="radio" name="curtain" id="curtain2" value="closed"
+                            <% if(typeof data.show !== "undefined" && data.show.needed.curtain === 'closed') { %>
+                                   checked
+                                    <% } %>
+                            >
                             <label class="form-check-label" for="curtain2">Össze</label>
                         </div>
                     </div>
@@ -61,6 +81,8 @@
                     <div class="form-group">
                         <label for="other">Egyéb</label>
                         <input type="text" name="other" class="form-control mr-sm-2" id="other"
+                        <% if(typeof data.show !== "undefined" ) { %> value="<%= data.show.needed.other %>"
+                                <% } %>
                                autocomplete="off">
                     </div>
                 </div>
@@ -69,11 +91,13 @@
                     <label for="afterThis">Mi után következzen?</label>
                     <select class="form-control" id="afterThis" name="afterThis">
                         <% data.shows.forEach(function(show) { %>
-                            <option><%= show.performer %> - <%= show.name %></option>
+                            <option
+                            <% if(data.title === 'hozzáadása') {
+                            if(data.shows.length === show.num) { %> selected="selected"<% }
+                            } else {
+                            if(data.show.num - 1 === show.num) { %> selected="selected"<% } } %>
+                            ><%= show.performer %> - <%= show.name %></option>
                         <% }); %>
-                        <!--
-
-                        <option selected="selected">2.a - Palotás</option>-->
                     </select>
                 </div>
 
