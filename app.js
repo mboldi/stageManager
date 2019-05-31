@@ -34,7 +34,7 @@ app.listen(port, function () {
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({port: 5000});
 
-let actProd = 0;
+let actProd = 1;
 
 wss.on('connection', function (ws) {
     ws.on('message', function (message) {
@@ -43,14 +43,13 @@ wss.on('connection', function (ws) {
         if (message === 'prodNum')
             ws.send(actProd);
         else if (message === 'inc')
-            ++actProd;
-        else if (message === 'dec')
-            --actProd;
-        else if (message === 'refresh')
+            console.log(++actProd);
+        else if (message === 'dec') {
+            if (actProd > 1)
+                console.log(--actProd);
+        } else if (message === 'refresh')
             wss.clients.forEach(function (client) {
                 client.send('refresh');
             });
     });
-
-    //ws.send('valamike');
 });

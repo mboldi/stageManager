@@ -93,9 +93,11 @@
                         <% data.shows.forEach(function(show) { %>
                             <option
                             <% if(data.title === 'hozzáadása') {
-                            if(data.shows.length === show.num) { %> selected="selected"<% }
+                            if(data.shows.length === show.num) { %> selected="selected"
+                            <% }
                             } else {
-                            if(data.show.num - 1 === show.num) { %> selected="selected"<% } } %>
+                            if(data.show.num - 1 === show.num) { %> selected="selected"
+                                    <% } } %>
                             ><%= show.performer %> - <%= show.name %></option>
                         <% }); %>
                     </select>
