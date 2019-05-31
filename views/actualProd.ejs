@@ -82,8 +82,18 @@
             <div class="col-12 col-lg-6">
                 <div class="card text-white bg-success mb-5 shadow">
                     <div class="card-header pb-0">
-                        <h3 class="card-title">Most zajlik</h3>
-                        <p class="card-title disabled"><%= data.show1.num %> - <%= data.show1.name %></p>
+                        <div class="container-float">
+                            <div class="row">
+                                <div class="col">
+                                    <h3 class="card-title">Most zajlik</h3>
+                                    <p class="card-title disabled"><%= data.show1.num %> - <%= data.show1.name %></p>
+                                </div>
+                                <div class="col">
+                                    <a href="/prod/<%= data.show1._id %>/edit/"
+                                       class="btn btn-outline-danger float-right">Szerkesztés</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body p-1">
                         <ul class="list-group list-group-flush bg-success">
@@ -125,8 +135,18 @@
             <div class="col-12 col-lg-6 ">
                 <div class="card text-white bg-warning mb-5 shadow">
                     <div class="card-header pb-0">
-                        <h3 class="card-title">Következő</h3>
-                        <p class="card-title disabled"><%= data.show2.num %> - <%= data.show2.name %></p>
+                        <div class="container-float">
+                            <div class="row">
+                                <div class="col">
+                                    <h3 class="card-title">Következő</h3>
+                                    <p class="card-title disabled"><%= data.show2.num %> - <%= data.show2.name %></p>
+                                </div>
+                                <div class="col">
+                                    <a href="/prod/<%= data.show2._id %>/edit"
+                                       class="btn btn-outline-danger float-right">Szerkesztés</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body p-1">
                         <ul class="list-group list-group-flush bg-warning">

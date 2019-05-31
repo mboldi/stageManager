@@ -16,6 +16,8 @@ module.exports = function (objectrepository) {
         if (typeof res.local === "undefined")
             res.local = {};
 
+        res.local.redir = false;
+
         if (typeof req.params.id === "undefined")
             res.local.title = "hozzáadása";
         else
